@@ -1,0 +1,49 @@
+<Project>
+    <PropertyGroup>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+        <!-- <RestoreLockedMode>true</RestoreLockedMode> -->
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>1591</NoWarn>
+    </PropertyGroup>
+
+    <!-- Makes all internals visible to the respective .IntegrationTests project.-->
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+            <_Parameter1>$(MSBuildProjectName).IntegrationTests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <!-- Makes all internals visible to the respective .UnitTests project.-->
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+            <_Parameter1>$(MSBuildProjectName).UnitTests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <!-- Common ruleset file -->
+    <PropertyGroup>
+        <CodeAnalysisRuleSet>$(SolutionDir)Rules.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+
+    <!-- StyleCop Analyzers configuration -->
+    <ItemGroup>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.376">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <AdditionalFiles Include="$(SolutionDir)\stylecop.json" Link="stylecop.json"/>
+    </ItemGroup>
+
+    <!-- Sonar Analyzers configuration -->
+    <ItemGroup>
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.35.0.42613">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+</Project>

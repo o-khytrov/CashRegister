@@ -1,0 +1,78 @@
+@model  CashRegister.Api.Models.PrintCheckModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="font-family: Courier">
+<style>
+    hr {
+        border-top:1px dashed #000;
+        /*Rest of stuff here*/
+    }
+</style>
+<div style="text-align: center">
+    <p>@Model.OrganizationName</p>
+    <p>@Model.BusinessUnitName</p>
+    <p>@Model.TaxNumber</p>
+    <p>@Model.Cashier</p>
+</div>
+<table style="width: 100%">
+    <thead>
+    <tr style="width: 70%"></tr>
+    <tr style="width: 10%"></tr>
+    <tr style="width: 15%"></tr>
+    <tr style="width: 5%"></tr>
+    </thead>
+    <tbody>
+    @foreach (var row in Model.Rows)
+    {
+        <tr>
+            <td>
+                @row.Amount
+            </td>
+            <td>
+                X
+            </td>
+            <td>
+                @row.Price
+            </td>
+            <td></td>
+        </tr>
+        <tr style="margin-bottom: 1px">
+            <td colspan="2">
+                @row.ItemName
+            </td>
+            <td>
+                @row.SubTotal
+            </td>
+            <td>
+                @row.Tax
+            </td>
+        </tr>
+    }
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="2" style="font-weight: bold">
+            СУМА
+        </td>
+        <td>
+            @Model.Total.ToString("#.00")
+        </td>
+    </tr>
+    </tfoot>
+</table>
+<p>СУМА</p>
+<hr/>
+<div style="text-align: center">
+    <p>№@Model.InternalNumber @Model.DateTime</p>
+    <p>ФН @Model.FiscalNumber</p>
+    <p>Фіскальний чек</p>
+</div>
+<div style="text-align: center">
+    <img style="width: 60%;" src="@Model.BarcodeBase64" alt=""/>
+</div>
+</body>
+</html>

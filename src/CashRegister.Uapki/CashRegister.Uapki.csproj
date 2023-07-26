@@ -1,0 +1,86 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <PlatformTarget>x64</PlatformTarget>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+    </ItemGroup>
+
+
+    <ItemGroup>
+        <ContentWithTargetPath Include="lib\windows\uapki.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>uapki.dll</TargetPath>
+        </ContentWithTargetPath>
+        <None Include="lib\windows\uapki.dll"/>
+        <ContentWithTargetPath Include="lib\windows\uapkic.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>uapkic.dll</TargetPath>
+        </ContentWithTargetPath>
+        <None Include="lib\windows\uapkic.dll"/>
+        <ContentWithTargetPath Include="lib\windows\uapkif.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>uapkif.dll</TargetPath>
+        </ContentWithTargetPath>
+        <None Include="lib\windows\uapkif.dll"/>
+        <ContentWithTargetPath Include="lib\windows\cm-pkcs12.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>cm-pkcs12.dll</TargetPath>
+        </ContentWithTargetPath>
+        <None Include="lib\windows\cm-pkcs12.dll"/>
+
+        <ContentWithTargetPath Include="lib\linux\libuapki.so">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>libuapki.so</TargetPath>
+        </ContentWithTargetPath>
+        <None Include="lib\linux\libuapki.so"/>
+
+        <ContentWithTargetPath Include="lib\linux\libuapkic.so.2.0.0">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>libuapkic.so.2.0.0</TargetPath>
+        </ContentWithTargetPath>
+        <None Include="lib\linux\libuapkic.so.2.0.0"/>
+
+        <ContentWithTargetPath Include="lib\linux\libuapkif.so.2.0.0">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>libuapkif.so.2.0.0</TargetPath>
+        </ContentWithTargetPath>
+        <None Include="lib\linux\libuapkif.so.2.0.0"/>
+
+        <ContentWithTargetPath Include="lib\linux\libcm-pkcs12.so">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>libcm-pkcs12.so</TargetPath>
+        </ContentWithTargetPath>
+        <None Include="lib\linux\libcm-pkcs12.so"/>
+        <None Remove="packages.lock.json"/>
+
+    </ItemGroup>
+
+
+    <ItemGroup>
+        <Compile Remove="NativeLibrary.cs"/>
+    </ItemGroup>
+
+</Project>
